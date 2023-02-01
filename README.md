@@ -90,6 +90,7 @@ The following files contain code originating from the [GLmol package](https://gi
 * `src/pdb_to_html/pymol2glmol.py`
 * `src/templates/protein_page.html`
 * `src/web_include/glmol.js`
+* `src/web_include/create_structure.js`
 
 ## Authors and license
 
