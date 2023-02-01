@@ -1,0 +1,146 @@
+{% extends "layout.html" %}
+{% block scripts %}
+<!--  
+   Contains code from GLmol
+
+   GLmol - Molecular Viewer on WebGL/Javascript 
+   (C) Copyright 2011, biochem_fan
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+    You should have received a copy of the GNU Lesser General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    This program uses
+      Three.js 
+         https://github.com/mrdoob/three.js
+         Copyright (c) 2010-2011 three.js Authors. All rights reserved.
+      jQuery
+         http://jquery.org/
+         Copyright (c) 2011 John Resig
+-->
+{% endblock %}
+{% block title %}{{ protein_info['uniprot_id'] }} y-mtPTM: Yeast Mitochondrial PTM Database{% endblock %}
+{% block scripts2 %}
+<script src="include/tooltips.js"></script>
+{% endblock %}
+{% block topmenu %}
+				<li class="nav-item active">
+				  <a class="nav-link" href="#basic">Basic information</a>
+				</li>
+				<li class="nav-item active">
+				  <a class="nav-link" href="#rawseqh">Sequence</a>
+				</li>
+				<li class="nav-item active">
+				  <a class="nav-link" href="#structure">Structure</a>
+				</li>
+				<li class="nav-item active">
+				  <a class="nav-link" href="#sourcesh">References</a>	
+				</li>
+				<li class="nav-item active">
+				  <a class="nav-link "href="index.html">Back</a>				  
+				</li>
+{% endblock %}
+{% block main_title %}{{ protein_info['uniprot_id'] }}{% endblock %}
+{% block main %}
+		<section>
+		<div class="container">
+		<div class="row">
+		<h3 id="basic">Basic Information</h3>
+		<div>
+		<table id="info"><tbody>
+		<tr><td><b>Name<b/></td><td>{{ protein_info['protein_name'] }}</td></tr>
+		<tr><td><b>Uniprot ID<b/></td><td><a class="text-dark" href="https://www.uniprot.org/uniprot/{{ protein_info['uniprot_id']}}">{{protein_info['uniprot_id']}}</a></td></tr>
+		<tr><td><b>Systematic gene name<b/></td><td><a class="text-dark" href="https://www.yeastgenome.org/locus/{{protein_info['systematic_gene_name']}}">{{protein_info['systematic_gene_name']}}</a></td></tr>
+		<tr><td><b>Standard gene name<b/></td><td>{{ protein_info['standard_gene_name'] }}</td></tr>		
+		<tr><td><b>Gene names<b/></td><td>{{ protein_info['gene_names'] }}</td></tr>
+		<tr><td><b>Description<b/></td><td>{{ protein_info['description'] }}</td></tr>
+		<tr><td><b>Protein length<b/></td><td>{{ protein_info['length'] }}</td></tr>
+		</tbody></table>
+		</div>
+	 	<h3 id="rawseqh" class="skiph3">Sequence</h3>
+		<div id="rawseq">
+		  {% autoescape false %}
+		{% for c in single_chars -%}
+        		{% if loop.index0 % 50 == 49 -%}{{ c }} <br/>{% elif loop.index0 % 10 == 9%}{{ c }} {% else %}{{ c }}{%- endif %}
+		  {%- endfor %}
+		  {% endautoescape %}
+	  </div>
+{% if modifications -%}
+		<h4 class="skiph3">Legend</h4>
+		
+<ul class="list-group">
+{% for pos_type in modifications %}
+<li class="list-group-item border-0 m-0 p-0"> <span style="background-color:{{modification_df.loc[pos_type,"Color"]}}; color:{{modification_df.loc[pos_type,"Text_color"]}};">X</span> {{modification_df.loc[pos_type,"Full_name"]}}</li>
+{% endfor %}
+</ul>
+{%- endif %}
+	 </div>
+	</section>
+	<section>
+	  <div class="container">
+	    <div class="row">
+ 			<h3 id="structure" class="skiph3">Structure</h3>
+{% if not hasStructure -%}
+<div id="viewer01">No 3d structure was found in the <a class="text-dark" href="https://alphafold.ebi.ac.uk/">AlphaFold Protein Structure Database</a>.</div>
+{% else %}
+ 	<p id="structurep">Structure visualized by <a class="text-dark" href="http://sourceforge.jp/projects/webglmol/forums/">GLmol</a> written by biochem_fan. The <a class="text-dark" href="https://alphafold.ebi.ac.uk/entry/{{ protein_info['uniprot_id'] }}">structure</a> was downloaded from the <a class="text-dark" href="https://alphafold.ebi.ac.uk/">AlphaFold Protein Structure Database</a>.
+ <div id="viewer">
+  <div id="glmol01"></div>
+ </div>
+
+  <textarea wrap="off" id="glmol01_src" style="display: none;">
+  {{ pdb_file }}
+  </textarea><br>
+  <textarea wrap="off" id="glmol01_rep" style="display: none;">
+  {{ representation }}
+ </textarea>
+
+  <div class="tabBox" id="glmol01_viewbox" style="left: 30%; z-index:1;">
+  <div class="insideTab" style="overflow: auto;">
+  <input name="glmol01_useImported" type="radio" value="true" checked>Use imported representation<br>
+ </div> 
+ </div>
+  <div id="loading" style="border: 2px solid white; position: absolute; color: white; left: 10%; top: 10%; padding: 5px; z-index:101;">
+ <p>Loading structure from server... It may take a while.</p>
+ <p>If you believe something went wrong, please make sure PDB ID is correct.<br>
+ Please also make sure that WebGL is enabled in your browser.
+ <ul><li>Internet Explorer: sorry. IE doesn't support WebGL.</li>
+ <li>Firefox (version 4 or later): try <a href="https://wiki.mozilla.org/Blocklisting/Blocked_Graphics_Drivers#How_to_force-enable_blocked_graphics_features">force enable WebGL</a>.</li>
+ <li>Chrome: try <a href="http://www.google.com/support/forum/p/Chrome/thread?tid=4b9244822aa2f2e0&hl=en">force enable WebGL</a>.</li>
+ <li>Safari: <a href="https://discussions.apple.com/thread/3300585?start=0&tstart=0">enable WebGL</a>.</li>
+ </ul></p></div>
+ </div>
+{%- endif %}</div></div>
+	 </section>
+
+<section>
+  <div class="container">
+    <div class="row">
+ <h3 id="sourcesh" class="skiph3">References</h3>
+ <div id="sources">
+{% if sources  %}
+ <table><tbody>
+ {% for src in sources -%}
+ 	<tr><td style="min-width: 80px">[{{src["pos"] + 1}}, {{src["type"]}}]</td><td id="source{{src["pos"]+1}}_{{src["count"]}}"><a class="text-dark" href="{{src["url"]}}">{{src["name"]}}</a></td></tr>
+ {%- endfor %}
+ </tbody></table>
+ {% else %}
+ No sources available.
+{% endif %}
+ </div>
+
+ <div style="height: 30px">
+ </div>
+</div>
+		</div></div>
+		</section>
+
+<script src="https://webglmol.osdn.jp/glmol/js/Three49custom.js"></script>
+<script type="text/javascript" src="include/glmol.js"></script>
+<script type="text/javascript" src="include/create_structure.js" > </script>
+{% endblock %}

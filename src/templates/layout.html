@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" type="image/x-icon" href="include/favicon.png">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	{% block scripts %}{% endblock %}
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{% block title %}{% endblock %}</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+	<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" href="include/style.css">
+	{% block scripts2 %}{% endblock %}
+	</head>
+<body>
+ <header>
+  <section id="nav-bar">
+		<nav class="navbar navbar-expand-md navbar-light">
+		  <div class="container"> 
+			<a class="navbar-brand" href="index.html#top"><img src="include/logo.png"></a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			 <i class="fa-solid fa-bars"></i>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+			  <ul class="navbar-nav ms-auto">
+			    {% block topmenu %}
+				<li class="nav-item active">
+				  <a class="nav-link "href="index.html">Home</a>
+				</li>
+				<li class="nav-item active">
+				  <a class="nav-link" href="database.html">Browse database</a>
+				</li>
+				<li class="nav-item active">
+				  <a class="nav-link" href="index.html#about">About this project</a>
+				</li>
+				<li class="nav-item active">
+				  <a class="nav-link" href="index.html#contact">Contact</a>	
+				</li>
+			    {% endblock %}
+			  </ul>
+			</div>
+		  </div>
+		</nav>
+	</section>
+      </header>   
+ <!-----------------banner------------------------>
+       <main>
+	<section id="banner">
+		<div class="container">
+			<div class="row">
+				<h1 class="promo-title" id="top">{% block main_title %}{% endblock %}</h1>
+			</div>
+		</div>
+	</section>
+	{% block main %}{% endblock %}
+       </main>
+       <!-----------------footer------------------------>
+       <footer class="footer">
+	<section id="footer">
+		<div class="container text-center text-md-start mt-5">
+         	   <div class="row mt-3">
+					<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <h6 class="fw-bold">y-mtPTM</h6>
+						<hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
+							<p><!-- The software generating this page can be found on Github-->In case you find an error or missing information, please, contact us.</p>
+							<p><i class="fas fa-wrench mr-3"></i> Last update January 2023</p>
+					</div>
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+						<h6 class="text-uppercase fw-bold" id="contact">Contact</h6>
+						<hr	class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
+							<p><i class="fas fa-person mr-3"></i> <a class="text-dark" href="http://www.biocenter.sk/lt.html">Ľubomír Tomáška</a></p>
+						<p><i class="fas fa-home mr-3"></i> <a class="text-dark" href="https://fns.uniba.sk/en/kge/">Department of Genetics</a><br>
+						  Faculty of Natural Sciences<br>
+						  Comenius University in Bratislava<br>842 15 Bratislava, Slovakia</p>
+							<p><i class="fas fa-envelope mr-3"></i> lubomir.tomaska@uniba.sk</p>
+					</div>
+			 		<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+						<h6 class="text-uppercase fw-bold">Technical inquiries</h6>
+						<hr	class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
+							<p><i class="fas fa-person mr-3"></i> <a class="text-dark" href="http://compbio.fmph.uniba.sk/~bbrejova/"> Bronislava Brejová</a></p>
+						<p><i class="fas fa-home mr-3"></i>  <a class="text-dark" href="https://fmph.uniba.sk/en/departments/department-of-computer-science/">Department of Computer Science</a><br> Faculty of Mathematics, Physics and Informatics<br>
+						  Comenius University in Bratislava<br> 842 48 Bratislava, Slovakia</p>
+							<p><i class="fas fa-envelope mr-3"></i> brejova@fmph.uniba.sk</p>
+					</div>
+                </div>
+		</div>
+	    <div class="container">
+				<div class="row mt-3">
+					<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+						<a href="https://fns.uniba.sk/en/"><img src="include/Prif_logo_text_CL_horizontal_ENG.png" class="img-fluid" alt="Logo of the Faculty of Natural Sciences"></a>
+					</div>
+					<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+						<a href="https://fmph.uniba.sk/en"><img src="include/FMFI_logo_text_BP_horizontal_ENG.png" class="img-fluid" alt="Logo of the Faculty of Mathematics, Physics and Informatics"></a>
+					</div>
+				</div>
+		</div>
+		<div class="text-center p-3 small" style="background-color: rgba(0, 0, 0, 0.2)">© 2023 Copyright: <a class="text-dark" href="index.html#about">The authors</a>
+    </div>
+   	</section>
+</body>
+</html>
+

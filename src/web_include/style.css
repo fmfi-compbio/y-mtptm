@@ -1,0 +1,208 @@
+l*
+{
+	padding: 0;
+	margin: 0;
+}
+body
+{
+	font-family:sans-serif;
+}
+
+td {vertical-align: top; }
+
+h3 { margin-top: 2rem; }
+.skiph3 { margin-top: 2rem; }
+
+/*-----------------navigation bar------------------------*/
+#nav-bar
+{
+	position: sticky;
+	top: 0;
+	z-index: 10;	
+}
+	.navbar
+{
+	background: rgb(227,190,53);
+	background: linear-gradient(90deg, rgba(227,190,53,1) 0%, rgba(252,176,69,1) 100%);
+	padding: 0 !important; 
+}
+	.navbar-brand img
+{
+	height: 100px;		
+	padding-left: 0;
+}
+	.navbar-nav li
+{
+	padding: 0 10px;
+	
+}
+	.navbar-nav li a
+{
+	font-weight: bold;
+	font-size: 18px;
+	color: #2F4F4F !important;
+	float: right;
+}
+	.navbar-nav li a:hover
+{
+	border-bottom: 2px solid #2F4F4F;	
+}
+	.fa-bars
+{
+	color: #2F4F4F;
+	font-size: 30px;
+}
+
+/*-----------------banner------------------------*/
+#banner
+{
+    /*
+	background: rgb(227,190,53);
+	background: linear-gradient(90deg, rgba(227,190,53,1) 0%, rgba(252,176,69,1) 100%);
+	padding-top: 0; 
+   */
+      margin-top: 1rem;
+}
+.promo-title
+{	
+	font-weight: bold;
+	padding-bottom: 20px;
+	color: #2F4F4F;
+}
+/*-----------------search box------------------------*/
+#search
+{
+	margin-top: 3rem;
+}
+.d-flex
+{
+	width: 100%;
+	align-items: center;
+}
+.d-flex input 
+{
+	background: rgba(233,212,86,0.2);
+	font-size: 20px;
+	border-color: gray;	
+}	
+::placeholder
+{
+	text-align: left;
+	font-style: italic;
+	}
+.d-flex button
+{
+	background: rgba(233,212,86,1);	
+	border-color: gray;		
+	font-weight: bold;
+	color: #2F4F4F;
+	width: 100px;
+	height: 45px;
+	
+}
+
+/*-----------------information------------------------*/
+#information
+{
+	padding: 20px 0;	
+}
+.information-img
+{
+	width: 250px;
+	margin-top: 20px; 
+}
+.information
+{
+	padding: 20px;
+}
+
+/*-----------------footer------------------------*/
+#footer
+{
+	background: rgb(227,190,53);
+	background: linear-gradient(90deg, rgba(227,190,53,1) 0%, rgba(252,176,69,1) 100%);
+	padding: 20px 0 !important;
+}
+
+/*-----------------glmol01------------------------*/
+
+#glmol01 {width: 600px; height: 600px; background-color: black; position: absolute;}
+   .settings {position: absolute; right: 0px; top: 10%; 
+      background-color: grey;
+      -moz-transform: rotate(-90deg); -webkit-transform: rotate(-90deg);
+      margin:0px; padding:10px;
+      -moz-transform-origin: 110% 100%; -webkit-transform-origin: 110% 100%;
+      -webkit-border-radius: 10px 10px 0px 0px; -moz-border-radius: 10px 10px 0px 0px;}
+   .controller {position: absolute; width: 0px; right: 0px; top: 10%;
+      background-color: rgba(0, 0, 0, 0.65); color: white;}
+
+   .tabBox {position: absolute; padding: 0px; color: white; bottom: 0px; height: 20px; width: 60%;}
+   .bottomTab {visibility: hidden; background-color: black; border: 1px solid white; color: white; margin: 0px; padding: 10px 10px 0px 10px;  -webkit-border-radius: 10px 10px 0px 0px; -moz-border-radius: 10px 10px 0px 0px;}
+   .insideTab {visibility: hidden; border: 1px solid white; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); margin:0px; overflow: hidden;}
+   .tabBox p, .tabBox h1, .tabBox ul {margin-left: 10px; font-size: 90%;}
+
+   .tooltip {
+     position: relative;
+     display: inline-block;
+     border-bottom: 1px dotted black;
+   }
+
+   .tooltip .tooltiptext {
+     visibility: hidden;
+     width: 150px;
+     background-color: black;
+     color: #fff;
+     text-align: center;
+     border-radius: 6px;
+     padding: 5px 0;
+     position: absolute;
+     z-index: 1;
+     bottom: 150%;
+     left: 50%;
+     margin-left: -60px;
+   }
+
+   .tooltip .tooltiptext::after {
+     content: "";
+     position: absolute;
+     top: 100%;
+     left: 50%;
+     margin-left: -20px;
+     border-width: 5px;
+     border-style: solid;
+     border-color: black transparent transparent transparent;
+   }
+
+   .tooltip:hover .tooltiptext {
+     visibility: visible;
+   }
+
+
+#viewer 
+{
+	width: 600px; 
+	height: 600px; 
+	max-height: 50%; 
+	max-width: 100%;
+	
+}
+#rawseq 
+{
+	overflow-wrap: break-word; 
+	font-family:'Lucida Console', monospace;
+	font-weight: lighter; 
+	line-height: 1.7;
+}
+#proteinname 
+{
+	text-align: center;
+	margin-bottom: 20px;
+}
+#sources 
+{
+	line-height: 1.5;
+}
+#information 
+{
+	overflow-wrap: break-word;
+}	

@@ -1,0 +1,24 @@
+Full_name,Amino_acids,Code,Sheet,Tiny,Color,Text_color
+Phoshorylation,STY,Phos,2_mt-P-sites,P,#33a02c,black
+K-Succinylation,K,K-succ,3_mt-K-succ-sites,S,#b2df8a,black
+K-acetylation,K,K-acetyl,4_mt-K-acetyl sites,KA,#fb9a99,black
+N-acetylation,*,N-acetyl,5_mt-nonK-acetyl,A,#fb9a99,black
+K-benzoylation,K,K-bz,6_mt-K-bz-sites,B,#ffff99,black
+Monomethylation,KRHDEQWSN,Mono-CH3,7_mt-monomethyl-sites,M1,#ff7f00,black
+Dimethylation,KR,Di-CH3,8_mt-dimethyl-sites,M2,#ff7f00,black
+Trimethylation,K,Tri-CH3,9_mt-trimethyl-sites,M3,#ff7f00,black
+Myristoylation,CGKST,Myr,10_mt-myristoyl-sites,My,#1f78b4,white
+Farnesylation,CGKST,Far,11_mt-farnesyl-sites,F,#1f78b4,white
+Palmitoylation,CGKST,Pal,12_mt-palmitoyl-sites,Pa,#1f78b4,white
+Carbamoylation,C,Carb,13_mt-carbamoyl-sites,C,#1f78b4,white
+Glutathionylation,C,Glut,14_mt-glutathionyl-sites,Glu,#1f78b4,white
+Methionine oxidation,M,M-ox,15_mt-Met-oxidation-sites,O,#1f78b4,white
+N-propionylation,*,N-prop,16_mt-N-propionylation-sites,Pr,#1f78b4,white
+Deamidation,NQMR,Deam,17_mt-deamidation-sites,D,#1f78b4,white
+N6-lipoylation,K,N6-lip,18_mt-N6-lipoyl-K-sites,L,#1f78b4,white
+Glycosylation,NQST,Glyc,19_mt-glycosylation-sites,Gly,#6a3d9a,white
+Ubiquitination,K,Ubi,20_mt-ubiquitination-sites,U,#fdbf6f,black
+SUMOylation,K,SUMO,21_mt-SUMOylation-sites,SU,#cab2d6,black
+Neddylation,K,Nedd,22_mt-neddyl-sites,N,#1f78b4,white
+Urmylation,K,Urm,23_mt-urmylation-sites,Ur,#1f78b4,white
+Multiple modifications,*,multiple,-,*,#e31a1c,white

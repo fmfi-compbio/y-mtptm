@@ -1,0 +1,207 @@
+{% extends "layout.html" %}
+{% block scripts %}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+{% endblock %}
+{% block title %}y-mtPTM: Yeast Mitochondrial PTM Database{% endblock %}
+{% block main_title %}Welcome to the Yeast Mitochondrial PTM Database{% endblock %}
+{% block main %}
+<!-----------------search box------------------------>
+    <section id="search">
+		<div class="container">
+  <script type="text/javascript">
+    function goToProperPage() {
+        var location = document.getElementById("select_page").value;
+        var url = './' + location;
+        window.location.href=url;
+    }
+  </script>
+
+<p class="small">Search terms: protein name (Abf2), gene name (ABF2, YMR072W), Uniprot ID (Q02486), or function (DNA-binding)</p>
+ <select id="select_page" style="max-width:90%;" class="operator">
+<option value="">Select a protein...</option>
+    {% for item in protein_list %}
+    <option value="{{ item["uniprot_id"] }}.html"}">{{ item["uniprot_id"] }} -- {{ item["systematic_gene_name"] }} -- {{ item["protein_name"] }} -- {{ item["gene_names"] }}</option>
+   {% endfor %}
+ </select>
+<script>$(document).ready(function() {$("select").select2();});</script>
+				<button class="btn btn-outline-success" type="submit" onclick="javascript:goToProperPage();">Search</button>
+		</div>
+	</section>
+<!-----------------Basic information------------------------>
+	<section id="information">
+	<div class="container">
+        <div class="row"> <!--  align-items-center -->
+	<div class="col information">
+	<div class="card"><div class="card-body">
+	<h5 class="card-title">Phosphorylation state</h5>
+		<div class="card-text">
+     	        <table class="table table-sm table-striped">
+		 <tbody>
+		 <tr><td>sites on mt proteins:</td><td>13463</td></tr>
+		 <tr><td>modified proteins:</td><td>1099</td></tr>
+		 <tr><td>sites per mt protein:</td><td>~9.66</td></tr>
+		 <tr><td>sites on mtDNA encoded proteins:</td><td>10</td></tr>
+		 </tbody>
+		</table>
+		</div>
+	</div></div> <!-- card -->
+
+	<img src="include/phospho-aminoacids.png" class="information-img p-2">
+
+	<div class="card"><div class="card-body">
+	<h5 class="card-title">SUMOylation state</h5>
+		<div class="card-text">
+     	        <table class="table table-sm table-striped">
+		 <tbody>
+		 <tr><td>sites on mt proteins:</td><td>628</td></tr>
+		 <tr><td>modified proteins:</td><td>239</td></tr>
+		 <tr><td>sites per mt protein:</td><td>~0.45</td></tr>
+		 <tr><td>sites on mtDNA encoded proteins:</td><td>7</td></tr>
+		 </tbody>
+		</table>
+		</div>
+	</div></div> <!-- card -->
+
+	<img src="include/SUMOyllysine.png" class="information-img p-2">
+
+	<div class="card"><div class="card-body">
+	<h5 class="card-title">Others</h5>
+		<div class="card-text">
+     	        <table class="table table-sm table-striped">
+		 <tbody>
+		 <tr><td>Glycosylation</td><td>(180 sites)</td></tr>
+		 <tr><td>N-acetylation</td><td>(2 sites)</td></tr>
+		 <tr><td>N-propionylation</td><td>(4 sites)</td></tr>
+		 <tr><td>N6-lipoylation</td><td>(3 sites)</td></tr>
+		 <tr><td>Myristoylation</td><td>(1 site)</td></tr>
+		 <tr><td>Farnesylation</td><td>(1 site)</td></tr>
+		 <tr><td>Palmitoylation</td><td>(13 sites)</td></tr>
+		 </tbody>
+		</table>
+		</div>
+	</div></div> <!-- card -->
+	</div> <!--col -->
+
+	<div class="col information">
+
+	<div class="card"><div class="card-body">
+	<h5 class="card-title">Succinylation state</h5>
+		<div class="card-text">
+     	        <table class="table table-sm table-striped">
+		 <tbody>
+		 <tr><td>sites on mt proteins:</td><td>2373</td></tr>
+		 <tr><td>modified proteins:</td><td>415</td></tr>
+		 <tr><td>sites per mt protein:</td><td>~1.7</td></tr>
+		 <tr><td>sites on mtDNA encoded proteins:</td><td>3</td></tr>
+		 </tbody>
+		</table>
+		</div>
+	</div></div> <!-- card -->
+
+	<img src="include/succinyllysine.png" class="information-img p-2">
+
+	<div class="card"><div class="card-body">
+	<h5 class="card-title">Acetylation state</h5>
+		<div class="card-text">
+     	        <table class="table table-sm table-striped">
+		 <tbody>
+		 <tr><td>sites on mt proteins:</td><td>1304</td></tr>
+		 <tr><td>modified proteins:</td><td>341</td></tr>
+		 <tr><td>sites per mt protein:</td><td>~0.94</td></tr>
+		 </tbody>
+		</table>
+		</div>
+	</div></div> <!-- card -->
+
+	<img src="include/acetyllysine.png" class="information-img p-2">
+
+
+	<div class="card"><div class="card-body">
+	<h5 class="card-title">Benzoylation state</h5>
+		<div class="card-text">
+     	        <table class="table table-sm table-striped">
+		 <tbody>
+		 <tr><td>sites on mt proteins:</td><td>72</td></tr>
+		 <tr><td>modified proteins:</td><td>40</td></tr>
+		 <tr><td>sites per mt protein:</td><td>~0.05</td></tr>
+		 </tbody>
+		</table>
+		</div>
+	</div></div> <!-- card -->
+
+	<img src="include/benzoyllysine.png" class="information-img p-2">
+
+	</div> <!--col -->
+
+	<div class="col information">
+
+	<div class="card"><div class="card-body">
+	<h5 class="card-title">Methylation state</h5>
+		<div class="card-text">
+     	        <table class="table table-sm table-striped">
+		 <tbody>
+		 <tr><td>sites on mt proteins:</td><td>63</td></tr>
+		 <tr><td>modified proteins:</td><td>38</td></tr>
+		 <tr><td>sites per mt protein:</td><td>~0.048</td></tr>
+		 </tbody>
+		</table>
+		</div>
+	</div></div> <!-- card -->
+
+	<img src="include/methyl-aminoacids.png" class="information-img p-2">
+
+	<div class="card"><div class="card-body">
+	<h5 class="card-title">Ubiquitination state</h5>
+		<div class="card-text">
+     	        <table class="table table-sm table-striped">
+		 <tbody>
+		 <tr><td>sites on mt proteins:</td><td>1867</td></tr>
+		 <tr><td>modified proteins:</td><td>445</td></tr>
+		 <tr><td>sites per mt protein:</td><td>~1.34</td></tr>
+		 </tbody>
+		</table>
+		</div>
+	</div></div> <!-- card -->
+
+	<img src="include/Ubiquitylysine.png" class="information-img p-2">
+
+	<div class="card"><div class="card-body">
+	<h5 class="card-title">Others</h5>
+		<div class="card-text">
+     	        <table class="table table-sm table-striped">
+		 <tbody>
+		 <tr><td>Glutathionylation</td><td>(4 sites)</td></tr>
+		 <tr><td>Neddylation</td><td>(1 site)</td></tr>
+		 <tr><td>Carbamoylation</td><td>(2 sites)</td></tr>
+		 <tr><td>Deamidation</td><td>(7 sites)</td></tr>
+		 <tr><td>Urmylation</td><td>(1 site)</td></tr>
+		 <tr><td>Met-oxidation</td><td>(3 sites)</td></tr>
+		 </tbody>
+		</table>
+		</div>
+	</div></div> <!-- card -->
+
+	</div> <!--col -->
+	</div> <!--row -->
+	</div> <!--container -->
+	</section>
+<!-----------------About this project------------------------>
+	<section>
+		<div class="container">
+			<h3 class="title" id="about">About this project</h3>
+			<div class="row">
+				<div class="card">
+					<div class="card-body">
+					<div class="card-text">
+					<p>The Yeast Mitochondrial Post-Translational Modification database (y-mtPTM) provides comprehensive list of about 20 experimentally validated post-translational modifications on mitochondrial proteins of the yeast <i>Saccharomyces cerevisiae</i>. A search for a protein of interest reveals the modified amino acid residues, their position within the primary sequence as well as on 3D structure and links to the source references. The y-mtPTM is being periodically updated for newly identified sites and/or modifications. Please, contact us in case you find inconsistencies, or you have a dataset that is not included in the database.</p>
+
+<p>
+The website and its content was created by Bronislava Brejová, Veronika Vozáriková, Ivan Agarský, Hana Derková, Matej Fedor, Dominika Harmanová, Lukáš Kiss, Andrej Korman, Martin Pašen, Filip Brázdovič, Jozef Nosek, Tomáš Vinař, Ľubomír Tomáška.</p>
+					</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

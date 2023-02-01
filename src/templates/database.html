@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+{% block title %}Browse Database. y-mtPTM: Yeast Mitochondrial PTM Database{% endblock %}
+{% block main_title %}Browse the Database{% endblock %}
+{% block scripts2 %}
+<script>
+  function filterTable(n) {
+      // for n>0 hide rows from protein table with zero count in column n
+      // for n==0 show all rows
+      $("#prot tr").filter(function() {
+	  $(this).toggle(n==0 || parseInt($(this).find("TD").slice(n,n+1).text()) > 0);
+      });
+  }
+  function checkRadio(radioButtonId) {
+      // check radiobutton with a given id (starts with #)
+      $(radioButtonId).last().prop('checked', true);
+  }
+</script>
+{% endblock %}
+
+{% block main %}	
+<!-----------------browse database------------------------>
+	<section id="search">
+		<div class="container">
+		  <div class="row mt-3">
+					<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+						<div class="form-check">
+						<input class="form-check-input" type="radio" value="" name="filterinput" id="check0" onclick="filterTable(0)">
+						<label class="form-check-label" for="check0">
+						All mitochondrial proteins
+						</label>
+						</div>
+					</div>
+					{% for item in modification_list %}
+					<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+						<div class="form-check">
+						<input class="form-check-input" type="radio" value="" name="filterinput" id="check{{ item["Column"] }}" onclick="filterTable({{ item["Column"]}})">
+						<label class="form-check-label" for="check{{ item["Column"] }}">
+						{{ item["Full_name"] }} ({{item["Tiny"]}})
+						</label>
+						</div>
+					</div>
+					{% endfor %} 
+			</div>
+		</div>
+	</section>
+	<section id="table">
+		<div class="container">
+		<table class="table table-sm">  
+			  <thead>
+				<tr>
+				  <th scope="col">Uniprot_ID</th>
+				  <th scope="col">Systematic gene name</th>
+				  <!-- <th scope="col">Standard gene name</th> -->
+				  <th scope="col">Protein names</th>
+				  <th scope="col">Gene names</th>
+				  <th scope="col">Length</th>
+				  {% for item in modification_list %}
+				  <th scope="col" onclick="filterTable({{ item["Column"]}}); checkRadio('#check{{ item["Column"] }}');">{{ item["Tiny"] }}</th>
+				  {% endfor %} 
+				 </tr>
+			  </thead>
+			  <tbody id="prot">
+			    {% for item in protein_list %}
+			      <tr>
+			        <td><a class="text-dark" href="{{ item["uniprot_id"] }}.html">{{ item["uniprot_id"] }}</a></td>
+				<td>{{ item["systematic_gene_name"] }}</td>
+				<td>{{ item["protein_name"] }}</td>
+				<td>{{ item["gene_names"] }}</td>
+				<td>{{ item["length"] }}</td>
+				{% for moditem in modification_list %}
+                                <td><a class="text-dark" href="{{ item["uniprot_id"] }}.html" data-bs-toggle="tooltip" data-bs-placement="top" title="{{moditem["Full_name"]}}">{{ item[moditem["Code"]] }}</td>
+				{% endfor %}				
+                              </tr>
+                            {% endfor %} 
+			  </tbody>
+			</table>
+		</div>
+	</section>
+{% endblock %}
+
