@@ -9,29 +9,22 @@ Once generated, the whole website consists only of HTML, CSS and JavaScript file
 Prerequisites:
 * The software was tested only on linux systems
 * Python version at least 3.8 is required
-
-Also install 
-* Pymol (e.g. via [conda](https://pymol.org/conda/) or as a ubuntu package)
-* [SQLite](https://sqlite.org/index.html)
 * Data files are downloaded via `wget` but alternatives such as `curl` can also be used
+* Other necessary libraries and prerequisites are installed by conda
 
 Downloading repository and setting up Python libraries:
 ```bash
-git clone  git@github.com:fmfi-compbio/y-mtptm.git
+git clone https://github.com/fmfi-compbio/y-mtptm.git
 
 # change to src dir
 cd y-mtptm/src
 
-# setup virtual environment
-python3 -m venv env
-# activate the environment
-source env/bin/activate
-# install required libraries to the environment
-python3 -m pip install -r requirements.txt
-
+# install further prerequisites by conda
+conda env create -f ../environment.yml
+conda activate ymtptm
 
 # all subsequent commands should be run in src folder
-# and with environment activated
+# and with conda environment activated
 ```
 
 Downloading necessary data files:
@@ -67,7 +60,8 @@ python3 excel_parser.py  2> excel.err > excel.log
 
 Building website from the SQLite database
 ```bash
-python3 html_builder.py 
+# this command also takes longer time
+python3 html_builder.py
 ```
 
 This final step creates html files in `../web`; these files can be then viewed in a browser locally or placed on a webserver.

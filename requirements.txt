@@ -1,6 +1,0 @@
-biopython==1.76
-pandas==0.25.3
-tqdm==4.30.0
-jinja2==2.10.1
-markupsafe==1.1.0
-requests==2.22.0

@@ -1,0 +1,19 @@
+name: ymtptm
+channels:
+- conda-forge
+- bioconda
+- defaults
+- schrodinger
+dependencies:
+- python>=3.8
+- pymol-bundle
+- sqlite
+- pip
+- pip:
+  - biopython
+  - pandas
+  - tqdm
+  - jinja2
+  - markupsafe
+  - requests
+  - openpyxl
