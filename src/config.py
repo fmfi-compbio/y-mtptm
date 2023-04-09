@@ -1,6 +1,6 @@
 """File with paths to data files"""
 
-excel_path = '../data/excel/Sc_mt_PTMs_202301231+stats.xlsx'
+excel_path = '../data/excel/Sc_mt_PTMs_20230401+stats.xlsx'
 database_path = '../data/excel/ymtptm.db'
 modifications_csv_path =  '../data/excel/modifications.csv'
 

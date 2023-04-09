@@ -88,29 +88,35 @@ def fill_sources(db_connection) -> None:
     )
 
     names_dict = {
-    'ID' : 'source_id',
-    'Description' : 'source_description', 
-    'URL' : 'source_url'
-    }    
+    'Short reference:' : 'source_id',
+    'Full reference' : 'source_description', 
+    'DOI' : 'source_url',
+    'Annotation' : 'annotation'    
+    }
+    #print(",".join(source_sheet.columns) + "*")
     source_sheet.rename(columns=names_dict, inplace=True)
+    #print(",".join(source_sheet.columns) + "*")
     
     sql_query = """
         INSERT INTO mtmod_source
-          (source_id, source_description, source_url)
-          VALUES (?, ?, ?)
+          (source_id, source_description, source_url, annotation, position)
+          VALUES (?, ?, ?, ?, ?)
     """
 
+    position = 0;
     for row in tqdm(source_sheet.itertuples(), total=len(source_sheet), desc='Populating sources', file=stdout):
 
-        # skip rows without ID (section headers, empty etc)
+        # skip rows without ID (empty etc)
         if pd.isna(row.source_id):
             continue
 
         try:
             cursor.execute(sql_query, (str(row.source_id).strip(),
-                                       row.source_description,
-                                       str(row.source_url).strip()))
-            
+                                       str(row.source_description).strip(),
+                                       str(row.source_url).strip(),
+                                       str(row.annotation).strip(),
+                                       position))
+            position += 1
         except Exception as e:
             print(e, f"{row.source_id}", file=stderr)
 

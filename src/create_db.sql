@@ -13,8 +13,10 @@ CREATE TABLE `mtmod_proteins` (
 
 CREATE TABLE `mtmod_source` (
   `source_id` varchar(40) NOT NULL,
-  `source_description` text NOT NULL,
+  `source_description` text,
   `source_url` text,
+  `annotation` text,
+  `position` INTEGER,
   PRIMARY KEY (`source_id`)
 );
 
